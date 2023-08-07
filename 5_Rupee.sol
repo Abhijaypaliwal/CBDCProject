@@ -8,79 +8,67 @@ contract _1Rupee is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
-     address public controllerAddr;
-    mapping(address => uint[]) public HolderMapping;
-    
-    modifier onlyOwnerContract {
+    address public controllerAddr;
+    mapping(address => uint256[]) public HolderMapping;
+
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
-   
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("1 Rupees", "Rs. 1") {
         controllerAddr = _controller;
     }
 
-    
-
-    function safeMint(address to) public onlyOwnerContract{
+    function safeMint(address to) public onlyOwnerContract {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
         HolderMapping[to].push(tokenId);
     }
 
-
     function arrayMappingpop() public {
-            HolderMapping[msg.sender].pop();    
-    }
-    
-
-    function transfer_rupee( address _from, address _to) public {
-        
-            uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+        HolderMapping[msg.sender].pop();
     }
 
-    function return_num_notes(address _user) public view returns (uint) {
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
+    }
+
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
 }
-
 
 contract _2Rupee is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
 
-     mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
 
     address public controllerAddr;
-    
-    modifier onlyOwnerContract {
+
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
-    
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
 
     constructor(address _controller) ERC721("2 Rupees", "Rs. 2") {
@@ -94,46 +82,39 @@ contract _2Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    
-    function transfer_rupee( address _from, address _to) public {
-        
-            uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-      function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+    function burn_nft(address _address) internal {
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
-
 }
+
 contract _5Rupee is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
     address public controllerAddr;
 
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
-    
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("5 Rupees", "Rs. 5") {
         controllerAddr = _controller;
@@ -146,24 +127,19 @@ contract _5Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    
-
-    function transfer_rupee( address _from, address _to) public {
-        
-            uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-   
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
@@ -174,8 +150,7 @@ contract _10Rupee is ERC721, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
@@ -183,10 +158,7 @@ contract _10Rupee is ERC721, Ownable {
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("10 Rupees", "Rs. 10") {
         controllerAddr = _controller;
@@ -199,24 +171,21 @@ contract _10Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee( address _from, address _to) public {
-        
-             uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-     
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
@@ -226,22 +195,17 @@ contract _20Rupee is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
     address controllerAddr;
 
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
-    
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("20 Rupees", "Rs. 20") {
         controllerAddr = _controller;
@@ -254,24 +218,19 @@ contract _20Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    
-
-    function transfer_rupee(address _from,  address _to) public {
-        
-            uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-     
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
@@ -281,22 +240,17 @@ contract _50Rupee is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
     address public controllerAddr;
 
-
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
-    
+
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("50 Rupees", "Rs. 50") {
         controllerAddr = _controller;
@@ -309,24 +263,19 @@ contract _50Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    
-
-    function transfer_rupee( address _from, address _to) public {
-        
-            uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-  
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
@@ -337,8 +286,7 @@ contract _100Rupee is ERC721, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
@@ -346,10 +294,7 @@ contract _100Rupee is ERC721, Ownable {
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("100 Rupees", "Rs. 100") {
         controllerAddr = _controller;
@@ -362,24 +307,21 @@ contract _100Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee( address _from, address _to) public {
-        
-             uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-   
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
@@ -390,8 +332,7 @@ contract _200Rupee is ERC721, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
@@ -399,10 +340,7 @@ contract _200Rupee is ERC721, Ownable {
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("200 Rupees", "Rs. 200") {
         controllerAddr = _controller;
@@ -415,24 +353,21 @@ contract _200Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee(address _from,  address _to) public {
-        
-            uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-     
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
@@ -443,8 +378,7 @@ contract _500Rupee is ERC721, Ownable {
 
     Counters.Counter private _tokenIdCounter;
 
-    
-    modifier onlyOwnerContract {
+    modifier onlyOwnerContract() {
         require(msg.sender == controllerAddr, "not called by owner");
         _;
     }
@@ -452,10 +386,7 @@ contract _500Rupee is ERC721, Ownable {
 
     function changeController(address _addr) public {
         controllerAddr = _addr;
-
     }
-
-    
 
     constructor(address _controller) ERC721("500 Rupees", "Rs. 500") {
         controllerAddr = _controller;
@@ -468,24 +399,21 @@ contract _500Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    mapping(address => uint[]) public HolderMapping;
+    mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee(address _from,  address _to) public {
-        
-             uint x = HolderMapping[_from][HolderMapping[_from].length-1];
-           _transfer(_from, _to, x);
-            HolderMapping[_from].pop();
-            HolderMapping[_to].push(x);
+    function transfer_rupee(address _from, address _to) public {
+        uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
+        _transfer(_from, _to, x);
+        HolderMapping[_from].pop();
+        HolderMapping[_to].push(x);
     }
 
-     function return_num_notes(address _user) public view returns (uint) {
+    function return_num_notes(address _user) public view returns (uint256) {
         return HolderMapping[_user].length;
     }
 
-    
-
     function burn_nft(address _address) internal {
-        uint x = HolderMapping[_address][HolderMapping[_address].length-1];
+        uint256 x = HolderMapping[_address][HolderMapping[_address].length - 1];
         _burn(x);
         HolderMapping[_address].pop();
     }
