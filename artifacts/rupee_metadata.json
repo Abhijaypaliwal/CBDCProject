@@ -1,0 +1,58 @@
+{
+	"compiler": {
+		"version": "0.8.21+commit.d9974bed"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_addr",
+						"type": "address"
+					}
+				],
+				"name": "changeController",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"set_controller.sol": "rupee"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"set_controller.sol": {
+			"keccak256": "0x5512250d47a438f60a2ede6909752115d16e48042d8c3ed300b1e927a9aa150c",
+			"urls": [
+				"bzz-raw://230617efbd089b1b63f0d5472dcf5d59438dafddf45d3c7b69e76af7c00b5934",
+				"dweb:/ipfs/QmPKx3tbzBe5xvoWpb5ehJzoZqCpxuMiVYN1npX8VuS4D3"
+			]
+		}
+	},
+	"version": 1
+}
