@@ -47,10 +47,10 @@
 	},
 	"sources": {
 		"set_controller.sol": {
-			"keccak256": "0x5512250d47a438f60a2ede6909752115d16e48042d8c3ed300b1e927a9aa150c",
+			"keccak256": "0xcdec97342a7111e601f1bf81753bfc47f141b04609f2993f11f3f96e978f4782",
 			"urls": [
-				"bzz-raw://230617efbd089b1b63f0d5472dcf5d59438dafddf45d3c7b69e76af7c00b5934",
-				"dweb:/ipfs/QmPKx3tbzBe5xvoWpb5ehJzoZqCpxuMiVYN1npX8VuS4D3"
+				"bzz-raw://e06de5c95ff4308b8663786cf2f94782385b5a06b8d54b7a0687d2d31d8ddcb5",
+				"dweb:/ipfs/QmWgxBsQ6hf7JhN3GAoM3M71ovHtM1grvj1L4oRq1VXwbZ"
 			]
 		}
 	},

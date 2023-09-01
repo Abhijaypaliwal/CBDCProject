@@ -20,7 +20,7 @@ contract _1Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("1 Rupees", "Rs. 1") {
+    constructor(address _controller) ERC721("1 Rupees", "Rs. 1", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -35,7 +35,7 @@ contract _1Rupee is ERC721, Ownable {
         HolderMapping[msg.sender].pop();
     }
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -71,7 +71,7 @@ contract _2Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("2 Rupees", "Rs. 2") {
+    constructor(address _controller) ERC721("2 Rupees", "Rs. 2",  address(this)) {
         controllerAddr = _controller;
     }
 
@@ -82,7 +82,7 @@ contract _2Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -116,7 +116,7 @@ contract _5Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("5 Rupees", "Rs. 5") {
+    constructor(address _controller) ERC721("5 Rupees", "Rs. 5" , address(this)) {
         controllerAddr = _controller;
     }
 
@@ -127,7 +127,7 @@ contract _5Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -160,7 +160,7 @@ contract _10Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("10 Rupees", "Rs. 10") {
+    constructor(address _controller) ERC721("10 Rupees", "Rs. 10", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -173,7 +173,7 @@ contract _10Rupee is ERC721, Ownable {
 
     mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -207,7 +207,7 @@ contract _20Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("20 Rupees", "Rs. 20") {
+    constructor(address _controller) ERC721("20 Rupees", "Rs. 20", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -218,7 +218,7 @@ contract _20Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract {
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -252,7 +252,7 @@ contract _50Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("50 Rupees", "Rs. 50") {
+    constructor(address _controller) ERC721("50 Rupees", "Rs. 50", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -263,7 +263,7 @@ contract _50Rupee is ERC721, Ownable {
         HolderMapping[to].push(tokenId);
     }
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -296,7 +296,7 @@ contract _100Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("100 Rupees", "Rs. 100") {
+    constructor(address _controller) ERC721("100 Rupees", "Rs. 100", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -309,7 +309,7 @@ contract _100Rupee is ERC721, Ownable {
 
     mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract {
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -342,7 +342,7 @@ contract _200Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("200 Rupees", "Rs. 200") {
+    constructor(address _controller) ERC721("200 Rupees", "Rs. 200", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -355,7 +355,7 @@ contract _200Rupee is ERC721, Ownable {
 
     mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();
@@ -388,7 +388,7 @@ contract _500Rupee is ERC721, Ownable {
         controllerAddr = _addr;
     }
 
-    constructor(address _controller) ERC721("500 Rupees", "Rs. 500") {
+    constructor(address _controller) ERC721("500 Rupees", "Rs. 500", address(this)) {
         controllerAddr = _controller;
     }
 
@@ -401,7 +401,7 @@ contract _500Rupee is ERC721, Ownable {
 
     mapping(address => uint256[]) public HolderMapping;
 
-    function transfer_rupee(address _from, address _to) public {
+    function transfer_rupee(address _from, address _to) public onlyOwnerContract{
         uint256 x = HolderMapping[_from][HolderMapping[_from].length - 1];
         _transfer(_from, _to, x);
         HolderMapping[_from].pop();

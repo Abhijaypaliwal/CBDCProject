@@ -292,13 +292,7 @@
 					}
 				],
 				"name": "transferAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -397,11 +391,11 @@
 			]
 		},
 		"Buy_ERupee.sol": {
-			"keccak256": "0x957a29e900c0dde88342366cf56e6c7bc0ab8c55901547a98c5e5b39612386c2",
+			"keccak256": "0x47da2106d39e652be5eaab5c9c55a1be4fdd0ef555ff6a0c8a16758c57f3ee37",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://faefd29f54955974a0cd2309c6db7cf77aefa24b887d2f39e585d613dac77c61",
-				"dweb:/ipfs/QmRGDeNWwacMyGhSjFpJBakhX1fx32wdnVfocr8kN9uPQZ"
+				"bzz-raw://a1133ddbe0dd271e2490c0e5a11cb218090caec460f89dee8b745b479b2f7520",
+				"dweb:/ipfs/QmagrV9SFTDz1sifwnXtFGjmc7fUEhUZTQJtwAMxKyTeaR"
 			]
 		}
 	},

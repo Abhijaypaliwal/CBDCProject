@@ -20,6 +20,8 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     using Address for address;
     using Strings for uint256;
 
+    address public _owner;
+
     // Token name
     string private _name;
 
@@ -41,9 +43,15 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
      */
-    constructor(string memory name_, string memory symbol_) {
+    constructor(string memory name_, string memory symbol_, address owner_) {
         _name = name_;
         _symbol = symbol_;
+        _owner = owner_;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == _owner, "could only be called by the owner");
+        _;
     }
 
     /**
@@ -147,7 +155,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-transferFrom}.
      */
-    function transferFrom(address from, address to, uint256 tokenId) public virtual override {
+    function transferFrom(address from, address to, uint256 tokenId) public onlyOwner virtual override {
         //solhint-disable-next-line max-line-length
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner or approved");
 
@@ -157,7 +165,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-safeTransferFrom}.
      */
-    function safeTransferFrom(address from, address to, uint256 tokenId) public virtual override {
+    function safeTransferFrom(address from, address to, uint256 tokenId) public onlyOwner    virtual override {
         safeTransferFrom(from, to, tokenId, "");
     }
 

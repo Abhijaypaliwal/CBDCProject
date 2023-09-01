@@ -62,16 +62,16 @@ contract buy_ERupee {
         two_hundred_Rupee_contract = _200Rupee;
         five_hundred_Rupee_contract = _500Rupee;
         rupee_contract_ERC20 = _rupeeContract_ERC20; */
-        address _1Rupee = 0xD54d3F6C3b863f29D4FC1d1e2Ae0EAC27b13d2EF;
-        address _2Rupee = 0xE5FdE1987e7Ec52b92E4f939c2B64299748a3D44;
-        address _5Rupee = 0x8CEC8D539D468Cd19563174eFf7705067A9FD582;
-        address _10Rupee = 0xB16c4005ACAb743e1EF2039f4D3E1Fd693beA34d;
-        address _20Rupee = 0x7D148294204E94e9592bE603C15e231b67Fb1d87;
-        address _50Rupee = 0xCa7dd6c3Edf65eeC61CeC7212df319610A72e479;
-        address _100Rupee = 0xe0C8919C807D262dEB2957eEfA512FE383094C83;
-        address _200Rupee = 0xdF035655Ff59008A07F46E16B1B9788FE4169eA2;
-        address _500Rupee = 0xec4AE94411412cBeD68C531A5dF7a0A7A1534dE3;
-        address _rupeeContract_ERC20 = 0x7e05b6aF7e51b614b9920A0328a91C3a09A3315a;
+        address _1Rupee = 0x27f2db78389654B645D3015Cce02D0EF571b2b89;
+        address _2Rupee = 0x15c15bB162D31cD58890Df3b4A38B59bD64d999c;
+        address _5Rupee = 0x49309576194e07A8D38078346783125Aa2c38B38;
+        address _10Rupee = 0xd9df6aCac6E676293f8C592DE2b5b6b9dB962ed9;
+        address _20Rupee = 0x490E7110FFDFBdA02fB9144cb20D03303dF2f825;
+        address _50Rupee = 0xfc71D3049Cdc12dcb30292D2CB9c7d154A8f6940;
+        address _100Rupee = 0xacC26DD287683Db3a4350d352F10105bB652E1dC;
+        address _200Rupee = 0xd1e69de132D8A0b3a5Ab60cb196E365442f777b9;
+        address _500Rupee = 0x98f0B2F27B5e4304b42d9b77f0E594Fc001F19BD;
+        address _rupeeContract_ERC20 = 0xC348a698ffA8600b58d6F52C6b112B4A7823E8fc;
         rupee_contract_ERC20 = _rupeeContract_ERC20;
         _rupeeContractList = [
             _500Rupee,
@@ -87,7 +87,7 @@ contract buy_ERupee {
         return true;
     }
 
-    function getUserFundAmt(address _user) public view returns(uint) {
+    function getUserFundAmt(address _user) public view returns (uint256) {
         return userFundsMapping[_user];
     }
 
@@ -141,7 +141,6 @@ contract buy_ERupee {
     function transferAmount(uint256 _amount, address _to)
         public
         blackListedCheck(_to)
-        returns (uint256)
     {
         //uint256[] public availArr = [5, 0, 0, 0, 0, 0, 0, 0, 0];
         //uint256[] public neededArr = [4, 0, 1, 1, 0, 0, 0, 1, 0];
@@ -170,7 +169,7 @@ contract buy_ERupee {
         uint256 total = 0;
 
         for (uint256 i = 0; i < 9; i++) {
-            if (NoteAvailArr[i] > NoteNeededCount[i]) {
+            if (NoteAvailArr[i] >= NoteNeededCount[i]) {
                 total += denominationArr[i] * NoteNeededCount[i];
                 transferArr[i] = NoteNeededCount[i];
                 NoteAvailArr[i] -= NoteNeededCount[i];
