@@ -72,25 +72,6 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "previousOwner",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "OwnershipTransferred",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -297,19 +278,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -326,13 +294,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "renounceOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -514,19 +475,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "newOwner",
-						"type": "address"
-					}
-				],
-				"name": "transferOwnership",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "_from",
 						"type": "address"
 					},
@@ -574,14 +522,8 @@
 				"name()": {
 					"details": "See {IERC721Metadata-name}."
 				},
-				"owner()": {
-					"details": "Returns the address of the current owner."
-				},
 				"ownerOf(uint256)": {
 					"details": "See {IERC721-ownerOf}."
-				},
-				"renounceOwnership()": {
-					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
 				"safeTransferFrom(address,address,uint256)": {
 					"details": "See {IERC721-safeTransferFrom}."
@@ -603,9 +545,6 @@
 				},
 				"transferFrom(address,address,uint256)": {
 					"details": "See {IERC721-transferFrom}."
-				},
-				"transferOwnership(address)": {
-					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
 				}
 			},
 			"version": 1
@@ -633,26 +572,10 @@
 	},
 	"sources": {
 		"5_Rupee.sol": {
-			"keccak256": "0x2ae82ae0251c380d89eed59dcb7eeb55bdd2ffded152247d307e3e52d009bcd7",
+			"keccak256": "0x30a3b8dfa1ddb87df61e78463e07e22e676cb01eede08b057d7453bb77d4a76e",
 			"urls": [
-				"bzz-raw://8191773f392c4330a5eccc04519086427ac5219d089e19e096e97012c0fc9562",
-				"dweb:/ipfs/QmRJWP9o3ozPUh4jkGBB16qHSdNtb6mupFHmEFiXJ6S37c"
-			]
-		},
-		"@openzeppelin/contracts/access/Ownable.sol": {
-			"keccak256": "0xba43b97fba0d32eb4254f6a5a297b39a19a247082a02d6e69349e071e2946218",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://fc980984badf3984b6303b377711220e067722bbd6a135b24669ff5069ef9f32",
-				"dweb:/ipfs/QmPHXMSXj99XjSVM21YsY6aNtLLjLVXDbyN76J5HQYvvrz"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
-			"keccak256": "0xd0f1dca31ee4ae7faa28a61f471c25e9bf20730807c7217d890a39e171dd116d",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://2fcdf46d4ed46a4e82b3ddbeb676f052107e84a64842bde65f8b1ff393762f56",
-				"dweb:/ipfs/QmP69prqVVqCycqDWCmN3HPu5yk4nGfaZvwg9e8ZnB3oib"
+				"bzz-raw://814c92c995b87ed247cfbe80ecada5031cc6d21c1d0d36b155a0471f8144a0c4",
+				"dweb:/ipfs/QmPGjWDj6ESXsapP6vn3NnysGQQNZHfGuq8drgZwKw2FS6"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
@@ -741,6 +664,14 @@
 			"urls": [
 				"bzz-raw://c50fcc459e49a9858b6d8ad5f911295cb7c9ab57567845a250bf0153f84a95c7",
 				"dweb:/ipfs/QmcEW85JRzvDkQggxiBBLVAasXWdkhEysqypj9EaB6H2g6"
+			]
+		},
+		"ERC721.sol": {
+			"keccak256": "0x2fd58e5bda94071a9353514d4ea232b454b70de32a365021f20dc65cc453077a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://260f4231e48f9158ba0368f369b641aec3eac05a321bea7dee276365680dda15",
+				"dweb:/ipfs/QmWMFiwt76JnVggugZd1NN1EyD5D2ueQ1pWv33CuhXH6eh"
 			]
 		}
 	},

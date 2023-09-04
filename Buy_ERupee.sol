@@ -62,16 +62,16 @@ contract buy_ERupee {
         two_hundred_Rupee_contract = _200Rupee;
         five_hundred_Rupee_contract = _500Rupee;
         rupee_contract_ERC20 = _rupeeContract_ERC20; */
-        address _1Rupee = 0x27f2db78389654B645D3015Cce02D0EF571b2b89;
-        address _2Rupee = 0x15c15bB162D31cD58890Df3b4A38B59bD64d999c;
-        address _5Rupee = 0x49309576194e07A8D38078346783125Aa2c38B38;
-        address _10Rupee = 0xd9df6aCac6E676293f8C592DE2b5b6b9dB962ed9;
-        address _20Rupee = 0x490E7110FFDFBdA02fB9144cb20D03303dF2f825;
-        address _50Rupee = 0xfc71D3049Cdc12dcb30292D2CB9c7d154A8f6940;
-        address _100Rupee = 0xacC26DD287683Db3a4350d352F10105bB652E1dC;
-        address _200Rupee = 0xd1e69de132D8A0b3a5Ab60cb196E365442f777b9;
-        address _500Rupee = 0x98f0B2F27B5e4304b42d9b77f0E594Fc001F19BD;
-        address _rupeeContract_ERC20 = 0xC348a698ffA8600b58d6F52C6b112B4A7823E8fc;
+        address _1Rupee = 0x7D421fac57AC06c3de10A920B3a117158CB76d21;
+        address _2Rupee = 0xDf4e6E2202791Ea345169C3f0B331a1609b763c8;
+        address _5Rupee = 0x53388347ad7b9340000ccED2652E7784C9E918b7;
+        address _10Rupee = 0x0Da83D04e876A5d34e81efc9642c156d731A44D8;
+        address _20Rupee = 0xb8C68697b4aEdA0A7836739D1AFeB5b037a8bb5b;
+        address _50Rupee = 0x16a0EF5D17F3218d420140FD5053c125d3fDc262;
+        address _100Rupee = 0xf987904aE9e81775E28C67699C5Fc5B789C0e806;
+        address _200Rupee = 0x0b2E3b7a976DB7dD38eae053d20a1B494a0d841e;
+        address _500Rupee = 0x15bB4a3F7B37A173dBe69d59A399d7641D06d73a;
+        address _rupeeContract_ERC20 = 0x1E093f1077C4A3CF301D35D45cdc4b39B01fAE2F;
         rupee_contract_ERC20 = _rupeeContract_ERC20;
         _rupeeContractList = [
             _500Rupee,

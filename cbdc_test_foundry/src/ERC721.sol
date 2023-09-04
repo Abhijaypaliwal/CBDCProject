@@ -46,7 +46,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         _symbol = symbol_;
         _owner = owner_;
     }
-    modifier onlyowner() {
+    modifier Onlyowner() {
         require(msg.sender == _owner, "could only be called by the owner");
         _;
     }
@@ -152,7 +152,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-transferFrom}.
      */
-    function transferFrom(address from, address to, uint256 tokenId) public onlyowner    virtual override {
+    function transferFrom(address from, address to, uint256 tokenId) public Onlyowner    virtual override {
         //solhint-disable-next-line max-line-length
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner or approved");
 
@@ -162,14 +162,14 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-safeTransferFrom}.
      */
-    function safeTransferFrom(address from, address to, uint256 tokenId) public onlyowner virtual override {
+    function safeTransferFrom(address from, address to, uint256 tokenId) public Onlyowner virtual override {
         safeTransferFrom(from, to, tokenId, "");
     }
 
     /**
      * @dev See {IERC721-safeTransferFrom}.
      */
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public onlyowner virtual override {
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public Onlyowner virtual override {
         require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: caller is not token owner or approved");
         _safeTransfer(from, to, tokenId, data);
     }

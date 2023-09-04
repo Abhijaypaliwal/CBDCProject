@@ -105,11 +105,11 @@
 			]
 		},
 		"Buy_ERupee.sol": {
-			"keccak256": "0x47da2106d39e652be5eaab5c9c55a1be4fdd0ef555ff6a0c8a16758c57f3ee37",
+			"keccak256": "0x358ce66bf00a9b28d2515df65115d9181bd767b372a930ef0f174626908fe8b6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a1133ddbe0dd271e2490c0e5a11cb218090caec460f89dee8b745b479b2f7520",
-				"dweb:/ipfs/QmagrV9SFTDz1sifwnXtFGjmc7fUEhUZTQJtwAMxKyTeaR"
+				"bzz-raw://093fa0101c1226be5a6b842dd0266646fca7aa4587f09f64a75ba9427b3de486",
+				"dweb:/ipfs/QmQsh7VHowXM8w84hARcmJfH8Q4pZjkHBv1Hj95pQvZbEw"
 			]
 		}
 	},

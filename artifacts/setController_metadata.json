@@ -60,10 +60,10 @@
 	},
 	"sources": {
 		"set_controller.sol": {
-			"keccak256": "0xcdec97342a7111e601f1bf81753bfc47f141b04609f2993f11f3f96e978f4782",
+			"keccak256": "0x95bea402cba77e05c27c27e526baf2811bc5e3c79987642cd25f9859b4587fdf",
 			"urls": [
-				"bzz-raw://e06de5c95ff4308b8663786cf2f94782385b5a06b8d54b7a0687d2d31d8ddcb5",
-				"dweb:/ipfs/QmWgxBsQ6hf7JhN3GAoM3M71ovHtM1grvj1L4oRq1VXwbZ"
+				"bzz-raw://67741743f48afa9603ad1f1a09f235d16bcb5f49d0f6477ef27605950fe7a3fe",
+				"dweb:/ipfs/QmQ17sdKqb6cUxDLc98ShsZPUJb5UrfPMhrp6eX7Tdm9uG"
 			]
 		}
 	},
