@@ -6,24 +6,78 @@
     <title>Demo Contract Call</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.10.2/web3.min.js"></script>
 
+    <style>
+
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-images {
+            text-align: left;
+        }
+
+        .center-images {
+            text-align: center;
+        }
+
+        .right-images {
+            text-align: right;
+        }
+        .image-container img {
+            width: 300px; /* Adjust the width as needed */
+            height: auto; /* Maintain the aspect ratio */
+        }
+    </style>
 
 
 
-<body style="background-color:rgb(127, 242, 250);">
+
+<body style="background-color:rgb(226, 162, 120);">
     <p align="center">Hello,</p>
     <p align="center"> current network is <span id="currNetwork"></span></p>
     <p align="center">your account address is <span id="accAddr"></span></p>
     <p align="center">your ETH balance is <span id="fetchFunds"></span></p>
-    <p align="center">your funds are Rupees <span id="fetchERC20Funds"></span></p>
-    <p align="center"> Number of 1 Rupee coins: <span id="fetch1RupeeFunds"></span></p>
-    <p align="center"> Number of 2 Rupee coins: <span id="fetch2RupeeFunds"></span></p>
-    <p align="center"> Number of 5 Rupee coins: <span id="fetch5RupeeFunds"></span></p>
-    <p align="center"> Number of 10 Rupee coins: <span id="fetch10RupeeFunds"></span></p>
-    <p align="center"> Number of 20 Rupee Notes: <span id="fetch20RupeeFunds"></span></p>
-    <p align="center"> Number of 50 Rupee Notes: <span id="fetch50RupeeFunds"></span></p>
-    <p align="center"> Number of 100 Rupee Notes: <span id="fetch100RupeeFunds"></span></p>
-    <p align="center"> Number of 200 Rupee Notes: <span id="fetch200RupeeFunds"></span></p>
-    <p align="center"> Number of 500 Rupee Notes: <span id="fetch500RupeeFunds"></span></p>
+    <p align="center">your funds are ₹ <span id="fetchERC20Funds"></span></p>
+    <p align="center">Banknotes which you have</p>
+    <div class="image-container">
+        <div class="left-images">
+            <img src="./images/1Rupee.jpg" alt="Image 1">
+            <p align="center"> Number of 1 Rupee coins: <span id="fetch1RupeeFunds"></span></p>
+            <img src="./images/2Rupee.jpg" alt="Image 2">
+            <p align="center"> Number of 2 Rupee coins: <span id="fetch2RupeeFunds"></span></p>
+            <img src="./images/5Rupee.jpeg" alt="Image 3">
+            <p align="center"> Number of 5 Rupee coins: <span id="fetch5RupeeFunds"></span></p>
+        </div>
+        <div class="center-images">
+            <img src="./images/10Rupee.jpeg" alt="Image 4">
+            <p align="center"> Number of 10 Rupee coins: <span id="fetch10RupeeFunds"></span></p>
+            <img src="./images/20Rupee.jpeg" alt="Image 5">
+            <p align="center"> Number of 20 Rupee Notes: <span id="fetch20RupeeFunds"></span></p>
+            <img src="./images/50Rupee.jpeg" alt="Image 6">
+            <p align="center"> Number of 50 Rupee Notes: <span id="fetch50RupeeFunds"></span></p>   
+        </div>
+        <div class="right-images">
+            <img src="./images/100Rupee.jpg" alt="Image 7">
+            <p align="center"> Number of 100 Rupee Notes: <span id="fetch100RupeeFunds"></span></p>
+            <img src="./images/200Rupee.jpeg" alt="Image 8">
+            <p align="center"> Number of 200 Rupee Notes: <span id="fetch200RupeeFunds"></span></p>
+            <img src="./images/500Rupee.png" alt="Image 9">
+            <p align="center"> Number of 500 Rupee Notes: <span id="fetch500RupeeFunds"></span></p>
+        </div>
+    </div>
+    <!-- <img  src="./images/1Rupee.jpg" alt="1 Rupee", style="width:10%;",style="height:30%"> -->
+
+    <!-- <p align="center"> Number of 1 Rupee coins: <span id="fetch1RupeeFunds"></span></p> -->
+   
+    <!-- <p align="center"> Number of 2 Rupee coins: <span id="fetch2RupeeFunds"></span></p> -->
+    <!-- <p align="center"> Number of 5 Rupee coins: <span id="fetch5RupeeFunds"></span></p> -->
+    <!-- <p align="center"> Number of 10 Rupee coins: <span id="fetch10RupeeFunds"></span></p> -->
+    <!-- <p align="center"> Number of 20 Rupee Notes: <span id="fetch20RupeeFunds"></span></p> -->
+    <!-- <p align="center"> Number of 50 Rupee Notes: <span id="fetch50RupeeFunds"></span></p> -->
+    <!-- <p align="center"> Number of 100 Rupee Notes: <span id="fetch100RupeeFunds"></span></p> -->
+    <!-- <p align="center"> Number of 200 Rupee Notes: <span id="fetch200RupeeFunds"></span></p>
+    <p align="center"> Number of 500 Rupee Notes: <span id="fetch500RupeeFunds"></span></p> -->
    
 
     <p align="center">load amount <input type="text" id="myLoad"> <br> <br>
