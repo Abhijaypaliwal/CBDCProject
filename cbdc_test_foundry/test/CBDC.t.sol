@@ -42,6 +42,7 @@ contract testCBDC is Test {
         HundredRupee = new _100Rupee(msg.sender);
         TwoHundredRupee = new _200Rupee(msg.sender);
         FiveHundredRupee = new _500Rupee(msg.sender);
+
         controller = new setController();
         rupee = new GLDToken(29600000000000000000000000000000);
         rupee_NFT = new buy_ERupee();
@@ -93,4 +94,12 @@ contract testCBDC is Test {
     //     vm.expectRevert();
     //     FiveHundredRupee.safeMint(address(1));
     // }
+
+    function testNFTWithdrawal() external {
+        vm.startPrank(address(1));
+        rupee_NFT.buy_With_note_denominations(100000000000000000000);
+        console.log("balance before withdrawal",rupee.balanceOf(address(1) ));
+        rupee_NFT.convertNoteToERC20(10000000000000000000);
+        console.log("balance after withdrawal",rupee.balanceOf(address(1) ));
+    }
 }

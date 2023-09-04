@@ -63,7 +63,6 @@ contract buy_ERupee {
         address _500Rupee,
         address _rupeeContract_ERC20
     ) external onlyOwner returns (bool) {
-  
         // address _1Rupee = 0x27f2db78389654B645D3015Cce02D0EF571b2b89;
         // address _2Rupee = 0x15c15bB162D31cD58890Df3b4A38B59bD64d999c;
         // address _5Rupee = 0x49309576194e07A8D38078346783125Aa2c38B38;
@@ -243,5 +242,15 @@ contract buy_ERupee {
                 __Rupee_contract.safeMint(_to);
             }
         }
+    }
+
+    //@dev note that banknotes should equal to amount given, else error would be shown
+
+    function convertNoteToERC20(uint _amount) external returns (bool) {
+        require(_amount > 0, "amount should be greater than zero");
+        transferAmount(_amount, address(0));
+        IERC20 _tokenAddr = IERC20(rupee_contract_ERC20);
+        _tokenAddr.transfer(msg.sender, _amount);
+        return true;
     }
 }
