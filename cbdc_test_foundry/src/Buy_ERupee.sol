@@ -244,7 +244,8 @@ contract buy_ERupee {
         }
     }
 
-    //@dev note that banknotes should equal to amount given, else error would be shown
+    //@dev note that banknotes that user have should equal to amount given, else error would be shown
+    // @notice 
 
     function convertNoteToERC20(uint _amount) external returns (bool) {
         require(_amount > 0, "amount should be greater than zero");

@@ -97,7 +97,7 @@ contract testCBDC is Test {
 
     function testNFTWithdrawal() external {
         vm.startPrank(address(1));
-        rupee_NFT.buy_With_note_denominations(100000000000000000000);
+        rupee_NFT.buy_With_note_denominations(110000000000000000000);
         console.log("balance before withdrawal",rupee.balanceOf(address(1) ));
         rupee_NFT.convertNoteToERC20(10000000000000000000);
         console.log("balance after withdrawal",rupee.balanceOf(address(1) ));
