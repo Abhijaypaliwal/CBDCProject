@@ -244,8 +244,117 @@ contract buy_ERupee {
         }
     }
 
+    function transferAmountOnlyAdmin(
+        uint256 _amount,
+        address _to
+    ) internal blackListedCheck(_to) {
+        //uint256[] public availArr = [5, 0, 0, 0, 0, 0, 0, 0, 0];
+        //uint256[] public neededArr = [4, 0, 1, 1, 0, 0, 0, 1, 0];
+        //uint256[] public denominationsNotes = [500, 200, 100, 50, 20, 10, 5, 2, 1];
+        //uint256[] public transferArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        //uint256 public rem_mint = 0;
+        require(
+            userFundsMapping[address(this)] >= _amount,
+            "funds are less than requested"
+        );
+        uint256[9] memory NoteAvailArr = fetchUserNotes(address(this)); // current note count
+        uint256[9] memory NoteNeededCount; // exact amt needed for transaction
+        uint256[9] memory transferArr; // transfer to user at last
+        userFundsMapping[address(this)] -= _amount;
+        userFundsMapping[_to] += _amount;
+        uint256 _num1 = _amount / (10 ** 18);
+        uint256 rem_mint = 0;
+        uint256 rem_change = 0;
+        uint256 denom_burn;
+
+        for (uint256 k = 0; k < 9; ++k) {
+            uint256 temp = 0;
+            (temp, _num1) = (noteCalculation(_num1, denominationArr[k]));
+            NoteNeededCount[k] = (temp);
+        }
+        uint256 total = 0;
+
+        for (uint256 i = 0; i < 9; ++i) {
+            uint noteNeeded = NoteNeededCount[i];
+            if (NoteAvailArr[i] >= noteNeeded) {
+                total += denominationArr[i] * noteNeeded;
+                transferArr[i] = noteNeeded;
+                NoteAvailArr[i] -= noteNeeded;
+            } else {
+                uint256 change = _amount / (10 ** 18) - total;
+                for (uint256 j = i - 1; j >= 0; j--) {
+                    uint denomination = denominationArr[j];
+                    if (change < denomination && NoteAvailArr[j] > 0) {
+                        rem_mint = denomination - change;
+                        rem_change = denomination - rem_mint;
+                        denom_burn = denomination;
+                        IMyToken __Rupee_contract = IMyToken(
+                            _rupeeContractList[j]
+                        );
+                        __Rupee_contract.transfer_rupee(
+                            address(this),
+                            address(0)
+                        );
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        // send denom_burn from sender's wallet to 0 address-done
+        // send transferArr's content to reciever's address- done
+        // mint notes of rem_mint and send to sender- done
+        // mint notes of rem_change and send to reciever- done
+        sendNFTonlyAdmin(transferArr, _to, rem_mint, rem_change);
+    }
+
+    function sendNFTonlyAdmin(
+        uint256[9] memory _transferArr,
+        address _to,
+        uint256 _rem_mint,
+        uint256 _rem_change
+    ) internal {
+        for (uint256 i = 0; i < 9; ++i) {
+            for (uint256 j = 0; j < _transferArr[i]; j++) {
+                IMyToken __Rupee_contract = IMyToken(_rupeeContractList[i]);
+                __Rupee_contract.transfer_rupee(address(this), _to);
+            }
+        }
+
+        uint256 _num1 = _rem_mint;
+        uint256 _num2 = _rem_change;
+        uint256[9] memory NoteNeeded_rem_mint;
+        uint256[9] memory NoteNeeded_rem_change;
+
+        for (uint256 k = 0; k < 9; ++k) {
+            uint256 temp = 0;
+            (temp, _num1) = (noteCalculation(_num1, denominationArr[k]));
+            NoteNeeded_rem_mint[k] = temp;
+        }
+
+        for (uint256 i = 0; i < 9; ++i) {
+            for (uint256 j = 0; j < NoteNeeded_rem_mint[i]; ++j) {
+                IMyToken __Rupee_contract = IMyToken(_rupeeContractList[i]);
+                __Rupee_contract.safeMint(address(this));
+            }
+        }
+
+        for (uint256 k = 0; k < 9; ++k) {
+            uint256 temp = 0;
+            (temp, _num2) = (noteCalculation(_num2, denominationArr[k]));
+            NoteNeeded_rem_change[k] = temp;
+        }
+
+        for (uint256 i = 0; i < 9; ++i) {
+            for (uint256 j = 0; j < NoteNeeded_rem_change[i]; ++j) {
+                IMyToken __Rupee_contract = IMyToken(_rupeeContractList[i]);
+                __Rupee_contract.safeMint(_to);
+            }
+        }
+    }
+
     //@dev note that banknotes that user have should equal to amount given, else error would be shown
-    // @notice 
+    // @notice
 
     function convertNoteToERC20(uint _amount) external returns (bool) {
         require(_amount > 0, "amount should be greater than zero");
@@ -253,5 +362,102 @@ contract buy_ERupee {
         IERC20 _tokenAddr = IERC20(rupee_contract_ERC20);
         _tokenAddr.transfer(msg.sender, _amount);
         return true;
+    }
+
+    mapping(address => uint) public savingDepositMapping;
+    mapping(address => uint) public savingsDepositTimestamp;
+    uint public savingsDepositRate = 2; //2% savings rate
+
+    function changeSavigsDepositRate(
+        uint _rate
+    ) external onlyOwner returns (bool) {
+        savingsDepositRate = _rate;
+        return true;
+    }
+
+    function returnsavingDepositMapping(
+        address _user
+    ) external view returns (uint) {
+        return savingDepositMapping[_user];
+    }
+
+    function savingsDeposit(uint _amount) external returns (bool) {
+        require(
+            userFundsMapping[msg.sender] >= _amount,
+            "amount does not exist in balance"
+        );
+        require(_amount > 0, "amount cannot be zero");
+        require(_amount > 1000, "amount less than Rs. 1000 is not accepted");
+        transferAmount(_amount, address(this));
+        savingsDepositTimestamp[msg.sender] = block.timestamp;
+        savingDepositMapping[msg.sender] += _amount;
+        return true;
+    }
+
+    function withdrawSavingsDeposit(uint _amount) external returns (bool) {
+        require(savingDepositMapping[msg.sender] >= _amount, "amount is high");
+        require(_amount > 0, "amount cannot be zero");
+        uint inRupees = savingDepositMapping[msg.sender] / (10 ** 18);
+        uint256 calculatedInterest = (((block.timestamp -
+            savingsDepositTimestamp[msg.sender]) / (24 * 60 * 60)) *
+            ((inRupees * (10 ** 17) * savingsDepositRate) / (100 * 365))) /
+            (10 ** 17);
+        savingDepositMapping[msg.sender] += calculatedInterest * (10 ** 18);
+        savingsDepositTimestamp[msg.sender] = block.timestamp;
+        transferAmountOnlyAdmin(_amount, msg.sender);
+        return true;
+    }
+
+    struct userDepositInfo {
+        uint timestamp;
+        uint interestRate;
+        uint DepositinRupees;
+        uint maturity;
+        uint month;
+    }
+
+    userDepositInfo depositStruct;
+
+    userDepositInfo[] public depositArray;
+    mapping(address => userDepositInfo[]) public depositDetailsUser;
+
+    // notice plan1: 3 month, interest: 4%, plan2: 6 month, interest: 5%, plan3: 9 month, interest: 6%, plan4: 12month, interest: 7%
+
+    function deposit(
+        uint _amount,
+        uint month
+    ) public returns (uint depositNum) {
+        require(
+            userFundsMapping[msg.sender] >= _amount,
+            "amount does not exist in balance"
+        );
+        uint interest;
+        assembly {
+            switch month
+            case 3 {
+                interest := 4
+            }
+            case 6 {
+                interest := 5
+            }
+            case 9 {
+                interest := 6
+            }
+            case 12 {
+                interest := 12
+            }
+            default {
+                revert(0, 0)
+            }
+        }
+        require(_amount > 0, "amount cannot be zero");
+        require(_amount > 1000, "amount less than Rs. 1000 is not accepted");
+        transferAmount(_amount, address(this));
+        depositStruct.timestamp = block.timestamp;
+        depositStruct.interestRate = interest;
+        depositStruct.DepositinRupees = 1000;
+        depositStruct.month = month;
+        depositDetailsUser[msg.sender].push(depositStruct);
+        depositNum = depositDetailsUser[msg.sender].length;
     }
 }

@@ -14,7 +14,7 @@ import {_100Rupee} from "../src/5_Rupee.sol";
 import {_200Rupee} from "../src/5_Rupee.sol";
 import {_500Rupee} from "../src/5_Rupee.sol";
 import {GLDToken} from "../src/Rupees_ERC20.sol";
-import {buy_ERupee} from "../src/Buy_ERupee.sol";
+import {buy_ERupee} from "../src/Buy_ERupee_with_deposits.sol";
 import {setController} from "../src/set_controller.sol";
 
 contract testCBDC is Test {
@@ -75,11 +75,11 @@ contract testCBDC is Test {
         vm.stopPrank();
     }
 
-    function testNoteBuyAndSell() external {
-        vm.startPrank(address(1));
-        rupee_NFT.buy_With_note_denominations(888000000000000000000);
-        rupee_NFT.transferAmount(888000000000000000000, address(2));
-    }
+    // function testNoteBuyAndSell() external {
+    //     vm.startPrank(address(1));
+    //     rupee_NFT.buy_With_note_denominations(888000000000000000000);
+    //     rupee_NFT.transferAmount(888000000000000000000, address(2));
+    // }
 
     // function testtransfer() external {
     //     vm.startPrank(address(1));
@@ -95,11 +95,50 @@ contract testCBDC is Test {
     //     FiveHundredRupee.safeMint(address(1));
     // }
 
-    function testNFTWithdrawal() external {
+    // function testNFTWithdrawal() external {
+    //     vm.startPrank(address(1));
+    //     rupee_NFT.buy_With_note_denominations(110000000000000000000);
+    //     console.log("balance before withdrawal",rupee.balanceOf(address(1) ));
+    //     rupee_NFT.convertNoteToERC20(10000000000000000000);
+    //     console.log("balance after withdrawal",rupee.balanceOf(address(1) ));
+    // }
+
+    function testDeposit() external {
         vm.startPrank(address(1));
-        rupee_NFT.buy_With_note_denominations(110000000000000000000);
-        console.log("balance before withdrawal",rupee.balanceOf(address(1) ));
-        rupee_NFT.convertNoteToERC20(10000000000000000000);
-        console.log("balance after withdrawal",rupee.balanceOf(address(1) ));
+        rupee_NFT.buy_With_note_denominations(10000000000000000000000);
+        console.log(block.timestamp);
+        vm.warp(1694511832);
+        rupee_NFT.savingsDeposit(5000000000000000000000);
+        // console.log(FiveHundredRupee.balanceOf(address(1)));
+        // console.log(
+        //     FiveHundredRupee.balanceOf(
+        //         0x9998cd636fdbc1613eE6821da993B0857A7E3c1F
+        //     )
+        // );
+
+
+        console.log(
+            rupee_NFT.getUserFundAmt(0x9998cd636fdbc1613eE6821da993B0857A7E3c1F)
+        );
+          console.log(
+            rupee_NFT.getUserFundAmt(address(1))
+        );
+       
+        // vm.stopPrank();
+        vm.warp(1723436032);
+        rupee_NFT.withdrawSavingsDeposit(500000000000000000000);
+
+        console.log(rupee_NFT.returnsavingDepositMapping(address(1)));
+        // 
+        //   console.log(
+        //     rupee_NFT.getUserFundAmt(0x9998cd636fdbc1613eE6821da993B0857A7E3c1F)
+        // );
+
+        //  console.log(
+        //     rupee_NFT.getUserFundAmt(address(1))
+        // );
+
+        
+
     }
 }

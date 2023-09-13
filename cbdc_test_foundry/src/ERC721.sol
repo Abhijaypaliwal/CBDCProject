@@ -194,7 +194,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
      */
     function _safeTransfer(address from, address to, uint256 tokenId, bytes memory data) internal virtual {
         _transfer(from, to, tokenId);
-        require(_checkOnERC721Received(from, to, tokenId, data), "ERC721: transfer to non ERC721Receiver implementer");
+       // require(_checkOnERC721Received(from, to, tokenId, data), "ERC721: transfer to non ERC721Receiver implementer");
     }
 
     /**
@@ -248,10 +248,10 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
      */
     function _safeMint(address to, uint256 tokenId, bytes memory data) internal virtual {
         _mint(to, tokenId);
-        require(
-            _checkOnERC721Received(address(0), to, tokenId, data),
-            "ERC721: transfer to non ERC721Receiver implementer"
-        );
+        // require(
+        //     _checkOnERC721Received(address(0), to, tokenId, data),
+        //     "ERC721: transfer to non ERC721Receiver implementer"
+        // );
     }
 
     /**
