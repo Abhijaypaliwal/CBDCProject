@@ -242,5 +242,15 @@ contract buy_ERupee {
         }
     }
 
+    mapping(address => uint) public savingDepositMapping;
+
+    function savingsDeposit(uint _amount) external returns(bool) {
+            require(_amount >= userFundsMapping[msg.sender], "amount does not exist in balance");
+            transferAmount(_amount, address(this));
+            savingDepositMapping[msg.sender] += _amount;
+
+
+    }
+
     
 }

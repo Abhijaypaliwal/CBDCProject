@@ -30,9 +30,6 @@
         }
     </style>
 
-
-
-
 <body style="background-color:rgb(226, 162, 120);">
     <p align="center">Hello,</p>
     <p align="center"> current network is <span id="currNetwork"></span></p>
@@ -200,6 +197,7 @@
             addressNew.methods.transferAmount(amtEncoded, addr).send({ from: account })
                 .then(receipt => {
                     alert("funds successfully Transferred");
+                    location.reload();
                 })
                 .catch(error => {
                     console.error("there is error");
@@ -220,6 +218,7 @@
                     var reciept = "https://goerli.etherscan.io/tx/"+ receipt.blockHash
                     document.getElementById('transactionDetails').innerText = reciept;
                     alert("funds successfully Transferred");
+                    location.reload();
                 })
                 .catch(error => {
                     console.error("there is error");
